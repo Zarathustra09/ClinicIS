@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ClinicIS.Models.Inventory_Items>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Inventory Items</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+
+
+<div class="table-data">
+    <div class="order">
+        <div class="head">
+            <h3>User List</h3>
+            <i class='bx bx-search'></i>
+            <i class='bx bx-filter'></i>
+        </div>
+        <table>
+            <thead>
+                <tr>
+            <th>
+                        Item Name
+            </th>
+            <th>
+                        Item Description
+            </th>
+            <th>
+                        Quantity
+            </th>
+           
+            <th>
+                        Expiration Date
+            </th>
+            <th></th>
+        </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.item_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.item_description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.quantity)
+                        </td>
+                      
+                        <td>
+                            @Html.DisplayFor(modelItem => item.expiration_date)
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.item_id">Details</a> |
+                            <a asp-action="Edit" asp-route-id="@item.item_id">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@item.item_id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

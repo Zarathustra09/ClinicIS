@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ClinicIS.Models.User>
+
+@{
+    ViewData["Title"] = "User List";
+}
+
+<h1>User List</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="table-data">
+    <div class="order">
+        <div class="head">
+            <h3>User List</h3>
+            <i class='bx bx-search'></i>
+            <i class='bx bx-filter'></i>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Created At</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                        <tr>
+                            <td>@user.user_id</td>
+                            <td>@user.username</td>
+                            <td>@user.password</td>
+                            <td>@user.full_name</td>
+                            <td>@user.email</td>
+                            <td>
+                            @if (user.role == 1)
+                            {
+                                        <span>Student</span>
+                            }
+                            else if (user.role == 2)
+                            {
+                                        <span>Admin</span>
+                            }
+                            </td>
+                                <td>@user.created_at.ToString("MMMM dd, yyyy")</td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@user.user_id">Details</a> |
+                                <a asp-action="Edit" asp-route-id="@user.user_id">Edit</a> |
+                                <a asp-action="Delete" asp-route-id="@user.user_id">Delete</a>
+                            </td>
+                        </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
