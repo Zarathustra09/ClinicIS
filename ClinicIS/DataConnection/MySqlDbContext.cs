@@ -14,6 +14,9 @@ namespace produkto.DataConnection
 
         public DbSet<Order> Orders { get; set; }
 
+        public DbSet<Complaint> Complaints { get; set; }
+
+
         public MySqlDbContext(DbContextOptions<MySqlDbContext> options) : base(options) { }
     }
 }

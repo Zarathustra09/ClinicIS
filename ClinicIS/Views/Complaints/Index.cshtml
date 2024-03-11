@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ClinicIS.Models.Complaint>
+
+<h1>Complaints</h1>
+
+
+<div class="table-data">
+    <div class="order">
+        <div class="head">
+            <h3>Complaint</h3>
+            <i class='bx bx-search'></i>
+            <i class='bx bx-filter'></i>
+        </div>
+        <table>
+            <thead>
+                         <th>Complaint ID</th>
+                        <th>User</th>
+                        <th>Complaint Text</th>
+                        <th>Complaint Date</th>
+            </thead>
+            <tbody>
+                @foreach (var complaint in Model)
+                {
+                <tr>
+                    <td>@complaint.complaint_id</td>
+                        <td>@ViewBag.UsernameForComplaintId[complaint.complaint_id]</td>
+                    <td>@complaint.complaint_text</td>
+                    <td>@complaint.complaint_date</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
