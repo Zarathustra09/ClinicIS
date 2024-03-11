@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="~/style.css">
 
 
-	<title>AdminHub</title>
+	<title>Crimson Clinic</title>
 </head>
 <body>
 
@@ -18,8 +18,8 @@
 	<!-- SIDEBAR -->
 	<section id="sidebar">
 		<a href="#" class="brand">
-			<i class='bx bxs-smile'></i>
-			<span class="text">AdminHub</span>
+		@*	<i class='bx bxs-smile'></i>*@
+			<span class="text pl-3">Crimson Clinic</span>
 		</a>
 		<ul class="side-menu top">
 			<li>
@@ -29,14 +29,23 @@
 				</a>
 			</li>
 			<li>
-			 <a class="nav-link" asp-area="" asp-controller="" asp-action="">
+			 <a class="nav-link" asp-area="" asp-controller="Inventory_Items" asp-action="Index">
 					<i class='bx bxs-shopping-bag-alt' ></i>
 					<span class="text">Inventory</span>
 				</a>
 			</li>
+
+			<li>
+			 <a class="nav-link" asp-area="" asp-controller="Orders" asp-action="Index">
+				 <i class="bx bxs-file"></i> 
+					<span class="text">Orders</span>
+				</a>
+			</li>
+
+
 			<li>
 			 <a class="nav-link" asp-area="" asp-controller="User" asp-action="Index">
-					<i class='bx bxs-doughnut-chart' ></i>
+					<i class='bx bxs-doughnut-chart'></i>
 					<span class="text">Users</span>
 				</a>
 			</li>
@@ -45,10 +54,11 @@
 		<ul class="side-menu">
 			
 			<li>
-				<a href="#" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
-					<span class="text">Logout</span>
-				</a>
+			<a class="nav-link" asp-area="" asp-controller="Login" asp-action="Logout">
+				<i class='bx bxs-log-out-circle'></i>
+				<span class="text">Logout</span>
+			</a>
+
 			</li>
 		</ul>
 	</section>

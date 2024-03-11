@@ -14,13 +14,12 @@ namespace ClinicIS.Models
         [Required]
         public string password { get; set; }
 
-        [Required]
+     
         [Display(Name = "Full Name")]
-        public string full_name { get; set; }
+        public string? full_name { get; set; }
 
-        [Required]
-        [EmailAddress]
-        public string email { get; set; }
+
+        public string? email { get; set; }
 
         [Required]
         public int role { get; set; }

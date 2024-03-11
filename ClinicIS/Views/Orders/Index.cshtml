@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ClinicIS.Models.Order>
+
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<h1>Order Items</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="table-data">
+    <div class="order">
+        <div class="head">
+            <h3>Orders Management</h3>
+            <i class='bx bx-search'></i>
+            <i class='bx bx-filter'></i>
+        </div>
+        <table>
+            <thead>
+              <th>Order ID</th>
+            <th>User</th>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Order Date</th>
+            </thead>
+            <tbody>
+               @foreach (var order in Model)
+        {
+                <tr>
+                    <td>@order.order_id</td>
+                    <td>@ViewBag.UserNameForOrder[order.order_id]</td>
+                    <td>@ViewBag.ItemNameForOrder[order.order_id]</td>
+                    <td>@order.quantity</td>
+                        <td>@order.order_date.ToString("MMMM dd, yyyy")</td>
+                </tr>
+        }
+            </tbody>
+        </table>
+    </div>
+</div>

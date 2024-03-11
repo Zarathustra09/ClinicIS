@@ -15,7 +15,7 @@
 <div class="table-data">
     <div class="order">
         <div class="head">
-            <h3>User List</h3>
+            <h3>Inventory Management</h3>
             <i class='bx bx-search'></i>
             <i class='bx bx-filter'></i>
         </div>
@@ -56,7 +56,7 @@
                             @Html.DisplayFor(modelItem => item.expiration_date)
                         </td>
                         <td>
-                            <a asp-action="Details" asp-route-id="@item.item_id">Details</a> |
+                         @*   <a asp-action="Details" asp-route-id="@item.item_id">Details</a> |*@
                             <a asp-action="Edit" asp-route-id="@item.item_id">Edit</a> |
                             <a asp-action="Delete" asp-route-id="@item.item_id">Delete</a>
                         </td>

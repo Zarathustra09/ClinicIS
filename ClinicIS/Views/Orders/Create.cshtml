@@ -1,0 +1,32 @@
+﻿@model ClinicIS.Models.Order
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create Order</h1>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="user_id" class="control-label">User:</label>
+        <select asp-for="user_id" class="form-control" asp-items="@ViewBag.AvailableUsers"></select>
+        <span asp-validation-for="user_id" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="item_id" class="control-label">Item:</label>
+        <select asp-for="item_id" class="form-control" asp-items="@ViewBag.AvailableItems"></select>
+        <span asp-validation-for="item_id" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="quantity" class="control-label">Quantity:</label>
+        <input asp-for="quantity" class="form-control" />
+        <span asp-validation-for="quantity" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -12,6 +12,8 @@ namespace produkto.DataConnection
 
         public DbSet<Inventory_Items> Inventory_Items { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
+
         public MySqlDbContext(DbContextOptions<MySqlDbContext> options) : base(options) { }
     }
 }

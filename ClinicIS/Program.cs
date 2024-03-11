@@ -1,7 +1,15 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using produkto.DataConnection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Login"; // Specify the login path
+        options.LogoutPath = "/Login/Logout"; // Specify the logout path
+    });
 
 builder.Services.AddDbContext<MySqlDbContext>(options =>
 {
@@ -32,6 +40,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=Index}/{id?}");
 
 app.Run();
