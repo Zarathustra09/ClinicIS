@@ -12,6 +12,8 @@ namespace ClinicIS.Controllers
     {
         private readonly MySqlDbContext _context;
 
+        public static string _error;
+
         public OrdersController(MySqlDbContext context)
         {
             _context = context;
@@ -48,7 +50,7 @@ namespace ClinicIS.Controllers
 
 
 
-        // GET: Orders/Create
+        [HttpGet]
         public IActionResult Create()
         {
             // Retrieve the list of available users from the database
@@ -63,16 +65,19 @@ namespace ClinicIS.Controllers
             // Create a select list for the available inventory items
             ViewBag.AvailableItems = new SelectList(availableItems, "item_id", "item_name");
 
+            ViewBag.ErrorMessage = _error;
+
             return View();
         }
 
-        // POST: Orders/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("user_id,order_date,item_id,quantity")] Order order)
         {
+            _error = "";
             if (ModelState.IsValid)
             {
+            
                 // Set the order date to the current date and time
                 order.order_date = DateTime.Now;
 
@@ -83,25 +88,36 @@ namespace ClinicIS.Controllers
                 var item = await _context.Inventory_Items.FindAsync(order.item_id);
                 if (item != null)
                 {
+                    // Check if the order quantity exceeds the available stock
+                    if (order.quantity > item.quantity)
+                    {
+                        // If the order quantity exceeds the stock quantity, set ViewBag error message
+                       _error = "Order quantity exceeds available stock.";
+                        // Repopulate the dropdown lists
+                        return RedirectToAction(nameof(Create));
+                    }
+
                     // Deduct the quantity from the inventory
                     item.quantity -= order.quantity;
 
                     // Save changes to the database
                     await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index));
                 }
                 else
                 {
                     // Handle the case where the item is not found
-                    ModelState.AddModelError(string.Empty, "Item not found in inventory.");
+                    ViewBag.ErrorMessage = "Item not found in inventory.";
                     return View(order);
                 }
-
-                return RedirectToAction(nameof(Index));
             }
 
             // If the model state is not valid, return the create view with the model
             return View(order);
         }
+
+
 
 
         // GET: Orders/Edit/5

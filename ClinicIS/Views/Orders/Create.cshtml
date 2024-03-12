@@ -60,6 +60,14 @@
 
 <h1>Create Order</h1>
 
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+        <div class="alert alert-danger" role="alert">
+            <strong>Error:</strong> @ViewBag.ErrorMessage
+        </div>
+}
+
+
 <form asp-action="Create">
     <div class="form-group">
         <label asp-for="user_id" class="control-label">User:</label>
